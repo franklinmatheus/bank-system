@@ -56,15 +56,10 @@ public class Console {
 				case 4: {
 					System.out.print("> Input the code account (integer): ");
 					int code = input.nextInt();
-					Account account = bankSystem.getAccount(code);
-					
-					if (account != null) {
-						System.out.print("> Input value to debit (integer): ");
-						double value = input.nextDouble();
-						
-						account.setBalance(account.getBalance() - value);
-						System.out.println("> Debited value!");
-					} else System.out.println("> Account doesn't exist!");
+					System.out.print("> Input value to debit (integer): ");
+					double value = input.nextDouble();
+					String message = bankSystem.debit(code, value);
+					System.out.println(message);
 					break;
 				}
 				case 5: {

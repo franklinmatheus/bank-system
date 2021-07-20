@@ -19,12 +19,23 @@ public class BankSystem {
 		return this.database.select(_code);
 	}
 	
-	public String credit(int _code, double value) {
+	public String credit(int _code, double _value) {
 		String message = "";
 		Account account = this.getAccount(_code);
 		if (account != null) {
-			account.setBalance(account.getBalance() + value);
+			account.setBalance(account.getBalance() + _value);
 			message = "> Credited value!";
+		} else message = "> Account doesn't exist!";
+		return message;
+	}
+	
+	public String debit(int _code, double _value) {
+		String message = "";
+		Account account = this.getAccount(_code);
+		
+		if (account != null) {
+			account.setBalance(account.getBalance() - _value);
+			message = "> Debited value!";
 		} else message = "> Account doesn't exist!";
 		return message;
 	}
