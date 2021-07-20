@@ -19,6 +19,7 @@ public class Console {
 			System.out.println("2- Consult balance");
 			System.out.println("3- Credit");
 			System.out.println("4- Debit");
+			System.out.println("5- Transfer");
 			System.out.println("0- Exit");
 			System.out.println("-------------------------");
 			System.out.print("Input the number of desired option: ");
@@ -69,6 +70,26 @@ public class Console {
 						account.setBalance(account.getBalance() - value);
 						System.out.println("> Debited value!");
 					} else System.out.println("> Account doesn't exist!");
+					break;
+				}
+				case 5: {
+					System.out.print("> Input the SOURCE account code (integer): ");
+					int code_source = input.nextInt();
+					Account account_source = bankSystem.getAccount(code_source);
+					
+					System.out.print("> Input the DESTINATION account code (integer): ");
+					int code_destination = input.nextInt();
+					Account account_destination = bankSystem.getAccount(code_destination);
+					
+					if (account_source != null && account_destination != null) {
+						System.out.print("> Input value to debit (integer): ");
+						double value = input.nextDouble();
+						
+						account_source.setBalance(account_source.getBalance() - value);
+						account_destination.setBalance(account_destination.getBalance() + value);
+						System.out.println("> Transfered value!");
+					} else if (account_source == null) System.out.println("> Source account doesn't exist!");
+					else if (account_destination == null) System.out.println("> Destination account doesn't exist!");
 					break;
 				}
 				default:
