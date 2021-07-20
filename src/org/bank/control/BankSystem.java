@@ -9,5 +9,8 @@ public class BankSystem {
 	public BankSystem () {
 		this.database = new Database();
 	}
-
+	
+	public boolean register(int _code) {
+		return this.database.insert(_code);
+	}
 }

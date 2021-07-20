@@ -27,12 +27,11 @@ public class Database {
 	}
 	
 	public Account select(int _code) {
-		Account account = null;
 		for(Account temp : this.accounts) {
 			if (temp.getCode() == _code) 
-				account = temp;
-				break;
+				return temp;
 		}
-		return account;
+		return null;
 	}
+	
 }
