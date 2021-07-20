@@ -1,6 +1,7 @@
 package org.bank.control;
 
 import org.bank.data.Database;
+import org.bank.entity.Account;
 
 public class BankSystem {
 	
@@ -12,5 +13,9 @@ public class BankSystem {
 	
 	public boolean register(int _code) {
 		return this.database.insert(_code);
+	}
+	
+	public Account getAccount(int _code) {
+		return this.database.select(_code);
 	}
 }
