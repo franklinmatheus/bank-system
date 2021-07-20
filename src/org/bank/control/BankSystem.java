@@ -20,6 +20,8 @@ public class BankSystem {
 	}
 	
 	public String credit(int _code, double _value) {
+		if (_value <= 0) return "> Value must be higher than 0!";
+		
 		String message = "";
 		Account account = this.getAccount(_code);
 		if (account != null) {
@@ -30,6 +32,8 @@ public class BankSystem {
 	}
 	
 	public String debit(int _code, double _value) {
+		if (_value <= 0) return "> Value must be higher than 0!";
+		
 		String message = "";
 		Account account = this.getAccount(_code);
 		
@@ -41,6 +45,8 @@ public class BankSystem {
 	}
 	
 	public String transfer(int _codeSource, int _codeDestination, double _value) {
+		if (_value <= 0) return "> Value must be higher than 0!";
+		
 		String message = "";
 		Account account_source = this.getAccount(_codeSource);
 		Account account_destination = this.getAccount(_codeDestination);
