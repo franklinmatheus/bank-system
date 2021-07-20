@@ -28,9 +28,11 @@ public class Console {
 				
 				switch (option) {
 				case 1: {
-					System.out.print("> Input the code account (integer): ");
+					System.out.print("> Input the code account (integer > 0): ");
 					int code = input.nextInt();
-					if (bankSystem.register(code) == true)
+					if (code < 0)
+						System.out.println("> Invalid code! Must be higher than 0!");
+					else if (bankSystem.register(code) == true)
 						System.out.println("> Account registred!");
 					else System.out.println("> Account already exists!");
 					break;
