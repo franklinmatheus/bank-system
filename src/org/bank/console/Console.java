@@ -65,21 +65,12 @@ public class Console {
 				case 5: {
 					System.out.print("> Input the SOURCE account code (integer): ");
 					int code_source = input.nextInt();
-					Account account_source = bankSystem.getAccount(code_source);
-					
 					System.out.print("> Input the DESTINATION account code (integer): ");
 					int code_destination = input.nextInt();
-					Account account_destination = bankSystem.getAccount(code_destination);
-					
-					if (account_source != null && account_destination != null) {
-						System.out.print("> Input value to debit (integer): ");
-						double value = input.nextDouble();
-						
-						account_source.setBalance(account_source.getBalance() - value);
-						account_destination.setBalance(account_destination.getBalance() + value);
-						System.out.println("> Transfered value!");
-					} else if (account_source == null) System.out.println("> Source account doesn't exist!");
-					else if (account_destination == null) System.out.println("> Destination account doesn't exist!");
+					System.out.print("> Input value to debit (integer): ");
+					double value = input.nextDouble();
+					String message = bankSystem.transfer(code_source, code_destination, value);
+					System.out.println(message);
 					break;
 				}
 				default:

@@ -39,4 +39,17 @@ public class BankSystem {
 		} else message = "> Account doesn't exist!";
 		return message;
 	}
+	
+	public String transfer(int _codeSource, int _codeDestination, double _value) {
+		String message = "";
+		Account account_source = this.getAccount(_codeSource);
+		Account account_destination = this.getAccount(_codeDestination);
+		if (account_source != null && account_destination != null) {
+			this.credit(_codeDestination, _value);
+			this.debit(_codeSource, _value);
+			message = "> Transfered value!";
+		} else if (account_source == null) message = "> Source account doesn't exist!";
+		else if (account_destination == null) message = "> Destination account doesn't exist!";
+		return message;
+	}
 }
