@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import org.bank.control.BankSystem;
 import org.bank.entity.Account;
+import org.bank.entity.BonusAccount;
 
 public class Console {
 	
@@ -28,13 +29,31 @@ public class Console {
 				
 				switch (option) {
 				case 1: {
-					System.out.print("> Input the code account (integer > 0): ");
-					int code = input.nextInt();
-					if (code < 0)
-						System.out.println("> Invalid code! Must be higher than 0!");
-					else if (bankSystem.register(code) == true)
-						System.out.println("> Account registred!");
-					else System.out.println("> Account already exists!");
+					System.out.println("Which is the account type?");
+					System.out.println("1- Normal");
+					System.out.println("2- Bonus");
+					
+					int type = input.nextInt();
+					
+					if (type == 1) {
+						System.out.print("> Input the code account (integer > 0): ");
+						int code = input.nextInt();
+						if (code < 0)
+							System.out.println("> Invalid code! Must be higher than 0!");
+						else if (bankSystem.register(code) == true)
+							System.out.println("> Account registred!");
+						else System.out.println("> Account already exists!");
+					} else if (type == 2) {
+						System.out.print("> Input the code account (integer > 0): ");
+						int code = input.nextInt();
+						Account newAccount = new BonusAccount(code);
+						if (code < 0)
+							System.out.println("> Invalid code! Must be higher than 0!");
+						else if (bankSystem.register(newAccount) == true)
+							System.out.println("> Account registred!");
+						else System.out.println("> Account already exists!");
+					}
+					
 					break;
 				}
 				case 2: {
