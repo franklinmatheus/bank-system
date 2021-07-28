@@ -1,10 +1,14 @@
 package org.bank.console;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.bank.control.BankSystem;
 import org.bank.entity.Account;
+import org.bank.entity.SavingsAccount;
 
 public class Console {
 	
@@ -20,6 +24,7 @@ public class Console {
 			System.out.println("3- Credit");
 			System.out.println("4- Debit");
 			System.out.println("5- Transfer");
+			System.out.println("6- Earn interest");
 			System.out.println("0- Exit");
 			System.out.println("-------------------------");
 			System.out.print("Input the number of desired option: ");
@@ -28,13 +33,29 @@ public class Console {
 				
 				switch (option) {
 				case 1: {
-					System.out.print("> Input the code account (integer > 0): ");
-					int code = input.nextInt();
-					if (code < 0)
-						System.out.println("> Invalid code! Must be higher than 0!");
-					else if (bankSystem.register(code) == true)
-						System.out.println("> Account registred!");
-					else System.out.println("> Account already exists!");
+					System.out.println("> which is the account type?");
+					System.out.println("1- Normal");
+					System.out.println("2- Savings");
+					
+					int type = input.nextInt();
+					
+					if(type == 1) {
+						System.out.print("> Input the code account (integer > 0): ");
+						int code = input.nextInt();
+						if (code < 0)
+							System.out.println("> Invalid code! Must be higher than 0!");
+						else if (bankSystem.register(code) == true)
+							System.out.println("> Account registred!");
+						else System.out.println("> Account already exists!");
+					} else if (type == 2) {
+						System.out.print("> Input the code account (integer > 0): ");
+						int code = input.nextInt();
+						if (code < 0)
+							System.out.println("> Invalid code! Must be higher than 0!");
+						else if (bankSystem.register(new SavingsAccount(code)) == true)
+							System.out.println("> Account registred!");
+						else System.out.println("> Account already exists!");
+					}
 					break;
 				}
 				case 2: {
@@ -75,11 +96,22 @@ public class Console {
 					System.out.println(message);
 					break;
 				}
+				case 6: {
+					System.out.print("> Input the code account (integer): ");
+					int code = input.nextInt();
+					
+					BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+					System.out.print("> Input the interest rate ([0,100]): ");
+					double ratio = Double.parseDouble(br.readLine());
+					String message = bankSystem.earnInterest(code, ratio);
+					System.out.println(message);
+					break;
+				}
 				default:
 					break;
 				}
 				
-			} catch (InputMismatchException e) {
+			} catch (NumberFormatException | IOException | InputMismatchException e) {
 				System.out.println("[please, input a valid value]");
 				input.nextLine();
 			}
