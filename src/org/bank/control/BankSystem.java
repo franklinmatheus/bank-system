@@ -3,6 +3,7 @@ package org.bank.control;
 import org.bank.data.Database;
 import org.bank.entity.Account;
 import org.bank.entity.BonusAccount;
+import org.bank.entity.SavingsAccount;
 
 public class BankSystem {
 	
@@ -79,5 +80,19 @@ public class BankSystem {
 			account.setScoring(account.getScoring() + (((int) _value)/(_factor*100)));
 			System.out.println("> Bonus computed! Scoring: " + account.getScoring());
 		} else System.out.println("> Account doesn't exist!");
+	}
+	public String earnInterest(int _code, double _ratio) {
+		String message = "";
+		Account account = this.getAccount(_code);
+		
+		if (account != null) {
+			if (account instanceof SavingsAccount) {
+				((SavingsAccount) account).earnInterest(_ratio);
+				message = "> Interest earned!";
+			} else message = "> Account is not a savings account!";
+			
+			
+		} else message = "> Account doesn't exist!";
+		return message;
 	}
 }
