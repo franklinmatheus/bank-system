@@ -49,6 +49,12 @@ public class BankSystem {
 		Account account = this.getAccount(_code);
 		
 		if (account != null) {
+			if (account instanceof SavingsAccount) { 
+				//do nothing
+			} else {
+				if ((account.getBalance() - _value) < -1000)
+					return "> Fail! Transaction will leave negative balance greater than 1000";
+			}
 			account.setBalance(account.getBalance() - _value);
 			message = "> Debited value!";
 		} else message = "> Account doesn't exist!";
