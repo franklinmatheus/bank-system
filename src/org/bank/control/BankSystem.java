@@ -67,20 +67,21 @@ public class BankSystem {
 			message = "> Transfered value!";
 			
 			if (account_destination instanceof BonusAccount)
-				computeBonus(_codeDestination, _value, 2);
+				computeBonus(_codeDestination, _value, 1.5);
 			
 		} else if (account_source == null) message = "> Source account doesn't exist!";
 		else if (account_destination == null) message = "> Destination account doesn't exist!";
 		return message;
 	}
 	
-	public void computeBonus(int _code, double _value, int _factor) {
+	public void computeBonus(int _code, double _value, double _factor) {
 		BonusAccount account  = (BonusAccount) this.getAccount(_code);
 		if (account != null) {
-			account.setScoring(account.getScoring() + (((int) _value)/(_factor*100)));
+			account.setScoring(account.getScoring() + (((int) _value)/(int) (_factor*100)));
 			System.out.println("> Bonus computed! Scoring: " + account.getScoring());
 		} else System.out.println("> Account doesn't exist!");
 	}
+	
 	public String earnInterest(int _code, double _ratio) {
 		String message = "";
 		Account account = this.getAccount(_code);
