@@ -62,8 +62,12 @@ public class Console {
 					} else if (type == 3) {
 						System.out.print("> Input the code account (integer > 0): ");
 						int code = input.nextInt();
-
+						System.out.print("> Input initial balance (integer): ");
+						double value = input.nextDouble();
+						
 						Account newAccount = new SavingsAccount(code);
+						newAccount.setBalance(value);
+						
 						if (code < 0)
 							System.out.println("> Invalid code! Must be higher than 0!");
 						else if (bankSystem.register(newAccount) == true)
