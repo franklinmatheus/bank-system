@@ -49,6 +49,10 @@ public class BankSystem {
 		Account account = this.getAccount(_code);
 		
 		if (account != null) {
+			if (account instanceof SavingsAccount) {
+				if ((account.getBalance() - _value) < 0)
+					return "> Fail! Transaction will leave a negative balance";
+			}
 			account.setBalance(account.getBalance() - _value);
 			message = "> Debited value!";
 		} else message = "> Account doesn't exist!";
@@ -62,6 +66,11 @@ public class BankSystem {
 		Account account_source = this.getAccount(_codeSource);
 		Account account_destination = this.getAccount(_codeDestination);
 		if (account_source != null && account_destination != null) {
+			if (account_source instanceof SavingsAccount) {
+				if ((account_source.getBalance() - _value) < 0)
+					return "> Fail! Transaction will leave a negative balance";
+			}
+			
 			account_destination.setBalance(account_destination.getBalance() + _value);
 			account_source.setBalance(account_source.getBalance() - _value);
 			message = "> Transfered value!";
