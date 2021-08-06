@@ -68,6 +68,13 @@ public class BankSystem {
 		Account account_source = this.getAccount(_codeSource);
 		Account account_destination = this.getAccount(_codeDestination);
 		if (account_source != null && account_destination != null) {
+			if (account_source instanceof SavingsAccount) { 
+				//do nothing
+			} else {
+				if ((account_source.getBalance() - _value) < -1000)
+					return "> Fail! Transaction will leave negative balance greater than 1000";
+			}
+			
 			account_destination.setBalance(account_destination.getBalance() + _value);
 			account_source.setBalance(account_source.getBalance() - _value);
 			message = "> Transfered value!";
