@@ -1,9 +1,9 @@
-package org.bank.data;
+package org.bank.BackSystem.data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bank.entity.Account;
+import org.bank.BackSystem.entity.Account;
 
 public class Database {
 	

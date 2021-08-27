@@ -1,4 +1,4 @@
-package org.bank.entity;
+package org.bank.BackSystem.entity;
 
 public class SavingsAccount extends Account {
 

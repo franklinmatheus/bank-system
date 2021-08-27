@@ -1,9 +1,9 @@
-package org.bank.control;
+package org.bank.BackSystem.control;
 
-import org.bank.data.Database;
-import org.bank.entity.Account;
-import org.bank.entity.BonusAccount;
-import org.bank.entity.SavingsAccount;
+import org.bank.BackSystem.data.Database;
+import org.bank.BackSystem.entity.Account;
+import org.bank.BackSystem.entity.BonusAccount;
+import org.bank.BackSystem.entity.SavingsAccount;
 
 public class BankSystem {
 	

@@ -1,4 +1,4 @@
-package org.bank.console;
+package org.bank.BackSystem.console;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import org.bank.control.BankSystem;
-import org.bank.entity.Account;
-import org.bank.entity.BonusAccount;
-import org.bank.entity.SavingsAccount;
+import org.bank.BackSystem.control.BankSystem;
+import org.bank.BackSystem.entity.Account;
+import org.bank.BackSystem.entity.BonusAccount;
+import org.bank.BackSystem.entity.SavingsAccount;
 
 public class Console {
 	
