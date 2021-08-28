@@ -19,7 +19,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Resolve Dependencies
-      run: mvn dependency:analyze
+      run: mvn install
     - name: Analyze Dependencies
       run: mvn dependency:analyze
     - name: Build with Maven
