@@ -1,0 +1,50 @@
+name: Candidate version
+
+on:
+  push:
+    branches:
+      - 'release/**'
+  pull_request:
+    branches:
+      - 'release/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    
+    - name: Resolve Dependencies
+      run: mvn install
+    
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    
+    - name: Code Analysis with Checkstyle
+      run: mvn checkstyle:check
+
+    - name: Tests
+      run: mvn test
+
+  publish:
+    needs: build    
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - uses: mr-smithers-excellent/docker-build-push@v5
+      name: Build & push Docker image
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        image: franklinmatheus/bank-system
+        registry: docker.io
+        tags: latest-release
